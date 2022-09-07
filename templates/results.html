@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1><a href='/'>{{ title0 }}</a></h1>
+아래의 빈칸에 "A" + "종목코드번호"를 입력후 분석버튼 클릭! ( 예: 삼성전자의 경우, A005930 ) <br>
+<form method='POST' action='/stockanal'>
+<h2><p><input name='code3' type='text' placeholder='예시: A005930' width='80'></p></h2>
+<h2><p><input type='submit' value='분석!'></p></h2>
+</form>
+
+{% endblock %}
