@@ -214,7 +214,7 @@ class Creon:
             else:
                 return today_close
         except Exception as ex:
-            self.dbgout("`get_todayclose() -> exception! " + str(ex) + "`")
+#             self.dbgout("`get_todayclose() -> exception! " + str(ex) + "`")
             return None
 
 
@@ -251,7 +251,7 @@ class Creon:
             else:
                 return lastday_close
         except Exception as ex:
-            self.dbgout("`get_lastclose() -> exception! " + str(ex) + "`")
+#             self.dbgout("`get_lastclose() -> exception! " + str(ex) + "`")
             return None
 
 
@@ -278,7 +278,7 @@ class Creon:
             #target_price = today_open + (lastday_high - lastday_low) * 0.2   # 0.3
             return today_TrMoney
         except Exception as ex:
-            self.dbgout("`get_todayTrMoney() -> exception! " + str(ex) + "`")
+#             self.dbgout("`get_todayTrMoney() -> exception! " + str(ex) + "`")
             return None
 
     def get_1daybef_TrMoney(self, code):
@@ -307,7 +307,7 @@ class Creon:
             #target_price = today_open + (lastday_high - lastday_low) * 0.2   # 0.3
             return targetday_TrMoney
         except Exception as ex:
-            self.dbgout("`get_1daybef_TrMoney() -> exception! " + str(ex) + "`")
+#             self.dbgout("`get_1daybef_TrMoney() -> exception! " + str(ex) + "`")
             return None
 
     def get_2daybef_TrMoney(self, code):
@@ -336,7 +336,7 @@ class Creon:
             #target_price = today_open + (lastday_high - lastday_low) * 0.2   # 0.3
             return targetday_TrMoney
         except Exception as ex:
-            self.dbgout("`get_2daybef_TrMoney() -> exception! " + str(ex) + "`")
+#             self.dbgout("`get_2daybef_TrMoney() -> exception! " + str(ex) + "`")
             return None
 
     def get_3daybef_TrMoney(self, code):
@@ -365,7 +365,7 @@ class Creon:
             #target_price = today_open + (lastday_high - lastday_low) * 0.2   # 0.3
             return targetday_TrMoney
         except Exception as ex:
-            self.dbgout("`get_3daybef_TrMoney() -> exception! " + str(ex) + "`")
+#             self.dbgout("`get_3daybef_TrMoney() -> exception! " + str(ex) + "`")
             return None
 
     def get_4daybef_TrMoney(self, code):
@@ -394,7 +394,7 @@ class Creon:
             #target_price = today_open + (lastday_high - lastday_low) * 0.2   # 0.3
             return targetday_TrMoney
         except Exception as ex:
-            self.dbgout("`get_4daybef_TrMoney() -> exception! " + str(ex) + "`")
+#             self.dbgout("`get_4daybef_TrMoney() -> exception! " + str(ex) + "`")
             return None
 
 
