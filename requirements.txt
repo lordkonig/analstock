@@ -1,6 +1,6 @@
 requests==2.27.1
 pywinauto==0.6.8
-pywin32
+pywin32;platform_system == "Windows"
 Slacker
 constants==0.6.0
 creon==0.1
