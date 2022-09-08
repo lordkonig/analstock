@@ -66,8 +66,8 @@ def template(content):
         </html>
         '''
 
-# @app.route('/', methods=['GET', 'POST'])
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
+# @app.route('/', methods=['POST'])
 def home() -> str :
 
     c.connect('insooya', 'Passwo1!', 'Password12!')
@@ -145,8 +145,8 @@ def home() -> str :
 
 
 
-# @app.route('/stockanal', methods=['GET', 'POST'])
-@app.route('/stockanal', methods=['POST'])
+@app.route('/stockanal', methods=['GET', 'POST'])
+# @app.route('/stockanal', methods=['POST'])
 def analyze() -> str:
 
     c.connect('insooya', 'Passwo1!', 'Password12!')
