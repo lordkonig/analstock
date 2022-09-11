@@ -89,13 +89,29 @@ class Creon:
         os.system('wmic process where "name like \'%CpStart%\'" call terminate')
         os.system('wmic process where "name like \'%DibServer%\'" call terminate')
 
-    def connect(self, id_, pwd, pwdcert, trycnt=300):
+#     def connect(self, id_, pwd, pwdcert, trycnt=300):
+#         if not self.connected():
+#             self.disconnect()
+#             self.kill_client()
+#             app = application.Application()
+#             # app.start('D:\CREON\STARTER\coStarter.exe /prj:cp /id:insooya /pwd:Passwo1! /pwdcert:Password12! /autostart' )
+#             app.start('D:\CREON\STARTER\coStarter.exe /prj:cp /id:insooya /pwd:Passwo1! /pwdcert:Password12! /autostart'.format(id=id_, pwd=pwd, pwdcert=pwdcert) )
+#             # app.start('D:\CREON\STARTER\coStarter.exe /prj:cp /id:{id} /pwd:{pwd} /pwdcert:{pwdcert} /autostart'.format(id=id_, pwd=pwd, pwdcert=pwdcert) )
+#         cnt = 0
+#         while not self.connected():
+#             if cnt > trycnt:
+#                 return False
+#             time.sleep(1)
+#             cnt += 1
+#         return True
+    
+    def connect(self, id_, pwd, trycnt=300):
         if not self.connected():
             self.disconnect()
             self.kill_client()
             app = application.Application()
             # app.start('D:\CREON\STARTER\coStarter.exe /prj:cp /id:insooya /pwd:Passwo1! /pwdcert:Password12! /autostart' )
-            app.start('D:\CREON\STARTER\coStarter.exe /prj:cp /id:insooya /pwd:Passwo1! /pwdcert:Password12! /autostart'.format(id=id_, pwd=pwd, pwdcert=pwdcert) )
+            app.start('D:\CREON\STARTER\coStarter.exe /prj:cp /id:insooya /pwd:Passwo1! /autostart'.format(id=id_, pwd=pwd ) )
             # app.start('D:\CREON\STARTER\coStarter.exe /prj:cp /id:{id} /pwd:{pwd} /pwdcert:{pwdcert} /autostart'.format(id=id_, pwd=pwd, pwdcert=pwdcert) )
         cnt = 0
         while not self.connected():
