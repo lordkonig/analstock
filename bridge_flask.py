@@ -41,8 +41,9 @@ def handle_connect():
         # _pwdcert = data['pwdcert']
         _id = data['insooya']
         _pwd = data['Passwo1!']
-        _pwdcert = data['Password12!']
-        return jsonify(c.connect(_id, _pwd, _pwdcert))
+#         _pwdcert = data['Password12!']
+#         return jsonify(c.connect(_id, _pwd, _pwdcert))
+        return jsonify(c.connect(_id, _pwd ))
     elif request.method == 'DELETE':
         # disconnect
         res = c.disconnect()
@@ -78,8 +79,8 @@ def home() -> str :
         code_high5morename1 = c.instCpCodeMgr.CodeToName(code1)
         if c.get_todayclose(code1) > c.get_lastclose(code1):
             if ( c.MktCapital_bps(code1) > c.get_todayclose(code1) ) and ( 10*c.MktCapital_eps(code1) > c.get_todayclose(code1) ) and ( c.MktCapital_epsroe(code1) > c.get_todayclose(code1) ) :
-                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h2>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' +') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
-                    str(',</h2>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
+                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h3>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' +') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
+                    str(',</h3>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>★순유동자산(★시가총액보다크면 저평가된종목!) ') + str( round( 10000*c.MktCapital_initialmoney(code1)*( c.MktCapital_moneyrate(code1) - c.MktCapital_debt(code1) )/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>■매출액증가율 ') + str( round(c.MktCapital_salesriserate1(code1),1) ) + str('%,   □마지막분기매출액증가율 ') + str( round(c.MktCapital_salesriserate2(code1),1) ) + str('%,   </h3>') + \
                     str('<h3>■순이익증가율 ') + str( round(c.MktCapital_prftriserate1(code1),1) ) + str('%,   □마지막분기순이익증가율 ') + str( round(c.MktCapital_prftriserate2(code1),1) ) + str('%,   </h3>') + \
@@ -93,8 +94,8 @@ def home() -> str :
                     str('베타계수 ') + str( round(c.MktCapital_beta1(code1),2) ) + str(',   ') + \
                     str('<h3>PER ') + str( c.MktCapital_per(code1) ) + str(',   ') + str('★pbr ') + str( c.MktCapital_pbr(code1) ) + str(',</h3>   ') + str('현재주가 ') + str(c.get_todayclose(code1)) + str('원')
             else:
-                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h2>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' +') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
-                    str(',</h2>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
+                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h3>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' +') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
+                    str(',</h3>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>★순유동자산(★시가총액보다크면 저평가된종목!) ') + str( round( 10000*c.MktCapital_initialmoney(code1)*( c.MktCapital_moneyrate(code1) - c.MktCapital_debt(code1) )/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>■매출액증가율 ') + str( round(c.MktCapital_salesriserate1(code1),1) ) + str('%,   □마지막분기매출액증가율 ') + str( round(c.MktCapital_salesriserate2(code1),1) ) + str('%,   </h3>') + \
                     str('<h3>■순이익증가율 ') + str( round(c.MktCapital_prftriserate1(code1),1) ) + str('%,   □마지막분기순이익증가율 ') + str( round(c.MktCapital_prftriserate2(code1),1) ) + str('%,   </h3>') + \
@@ -109,8 +110,8 @@ def home() -> str :
                     str('<h3>PER ') + str( c.MktCapital_per(code1) ) + str(',   ') + str('★pbr ') + str( c.MktCapital_pbr(code1) ) + str(',</h3>   ') + str('현재주가 ') + str(c.get_todayclose(code1)) + str('원')
         else:
             if ( c.MktCapital_bps(code1) > c.get_todayclose(code1) ) and ( 10*c.MktCapital_eps(code1) > c.get_todayclose(code1) ) and ( c.MktCapital_epsroe(code1) > c.get_todayclose(code1) ) :
-                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h2>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' ') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
-                    str(',</h2>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
+                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h3>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' ') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
+                    str(',</h3>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>★순유동자산(★시가총액보다크면 저평가된종목!) ') + str( round( 10000*c.MktCapital_initialmoney(code1)*( c.MktCapital_moneyrate(code1) - c.MktCapital_debt(code1) )/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>■매출액증가율 ') + str( round(c.MktCapital_salesriserate1(code1),1) ) + str('%,   □마지막분기매출액증가율 ') + str( round(c.MktCapital_salesriserate2(code1),1) ) + str('%,   </h3>') + \
                     str('<h3>■순이익증가율 ') + str( round(c.MktCapital_prftriserate1(code1),1) ) + str('%,   □마지막분기순이익증가율 ') + str( round(c.MktCapital_prftriserate2(code1),1) ) + str('%,   </h3>') + \
@@ -124,8 +125,8 @@ def home() -> str :
                     str('베타계수 ') + str( round(c.MktCapital_beta1(code1),2) ) + str(',   ') + \
                     str('<h3>PER ') + str( c.MktCapital_per(code1) ) + str(',   ') + str('★pbr ') + str( c.MktCapital_pbr(code1) ) + str(',</h3>   ') + str('현재주가 ') + str(c.get_todayclose(code1)) + str('원')
             else:
-                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h2>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' ') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
-                    str(',</h2>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
+                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h3>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' ') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
+                    str(',</h3>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>★순유동자산(★시가총액보다크면 저평가된종목!) ') + str( round( 10000*c.MktCapital_initialmoney(code1)*( c.MktCapital_moneyrate(code1) - c.MktCapital_debt(code1) )/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>■매출액증가율 ') + str( round(c.MktCapital_salesriserate1(code1),1) ) + str('%,   □마지막분기매출액증가율 ') + str( round(c.MktCapital_salesriserate2(code1),1) ) + str('%,   </h3>') + \
                     str('<h3>■순이익증가율 ') + str( round(c.MktCapital_prftriserate1(code1),1) ) + str('%,   □마지막분기순이익증가율 ') + str( round(c.MktCapital_prftriserate2(code1),1) ) + str('%,   </h3>') + \
@@ -158,8 +159,8 @@ def analyze() -> str:
         code_high5morename1 = c.instCpCodeMgr.CodeToName(code1)
         if c.get_todayclose(code1) > c.get_lastclose(code1):
             if ( c.MktCapital_bps(code1) > c.get_todayclose(code1) ) and ( 10*c.MktCapital_eps(code1) > c.get_todayclose(code1) ) and ( c.MktCapital_epsroe(code1) > c.get_todayclose(code1) ) :
-                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h2>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' +') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
-                    str(',</h2>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
+                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h3>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' +') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
+                    str(',</h3>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>★순유동자산(★시가총액보다크면 저평가된종목!) ') + str( round( 10000*c.MktCapital_initialmoney(code1)*( c.MktCapital_moneyrate(code1) - c.MktCapital_debt(code1) )/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>■매출액증가율 ') + str( round(c.MktCapital_salesriserate1(code1),1) ) + str('%,   □마지막분기매출액증가율 ') + str( round(c.MktCapital_salesriserate2(code1),1) ) + str('%,   </h3>') + \
                     str('<h3>■순이익증가율 ') + str( round(c.MktCapital_prftriserate1(code1),1) ) + str('%,   □마지막분기순이익증가율 ') + str( round(c.MktCapital_prftriserate2(code1),1) ) + str('%,   </h3>') + \
@@ -173,8 +174,8 @@ def analyze() -> str:
                     str('베타계수 ') + str( round(c.MktCapital_beta1(code1),2) ) + str(',   ') + \
                     str('<h3>PER ') + str( c.MktCapital_per(code1) ) + str(',   ') + str('★pbr ') + str( c.MktCapital_pbr(code1) ) + str(',</h3>   ') + str('현재주가 ') + str(c.get_todayclose(code1)) + str('원')
             else:
-                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h2>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' +') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
-                    str(',</h2>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
+                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h3>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' +') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
+                    str(',</h3>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>★순유동자산(★시가총액보다크면 저평가된종목!) ') + str( round( 10000*c.MktCapital_initialmoney(code1)*( c.MktCapital_moneyrate(code1) - c.MktCapital_debt(code1) )/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>■매출액증가율 ') + str( round(c.MktCapital_salesriserate1(code1),1) ) + str('%,   □마지막분기매출액증가율 ') + str( round(c.MktCapital_salesriserate2(code1),1) ) + str('%,   </h3>') + \
                     str('<h3>■순이익증가율 ') + str( round(c.MktCapital_prftriserate1(code1),1) ) + str('%,   □마지막분기순이익증가율 ') + str( round(c.MktCapital_prftriserate2(code1),1) ) + str('%,   </h3>') + \
@@ -204,8 +205,8 @@ def analyze() -> str:
                     str('베타계수 ') + str( round(c.MktCapital_beta1(code1),2) ) + str(',   ') + \
                     str('<h3>PER ') + str( c.MktCapital_per(code1) ) + str(',   ') + str('★pbr ') + str( c.MktCapital_pbr(code1) ) + str(',</h3>   ') + str('현재주가 ') + str(c.get_todayclose(code1)) + str('원')
             else:
-                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h2>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' ') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
-                    str(',</h2>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
+                return render_template('results.html', title0 = title1, ) + str( template(content) ) + str('<h3>') + str(code_high5morename1) + str(' (') + str(code1) + str(', ') + str(c.instCpCodeMgr.CodeToName( c.instCpCodeMgr.GetStockIndustryCode(code1) )) + str(')') + str(' ') + str( round( ( (c.get_todayclose(code1))/(c.get_lastclose(code1)) -1), 3)*100 ) + str('%★') + \
+                    str(',</h3>   <h3>시가총액 ') + str( round( c.MktCapital(code1)/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>★순유동자산(★시가총액보다크면 저평가된종목!) ') + str( round( 10000*c.MktCapital_initialmoney(code1)*( c.MktCapital_moneyrate(code1) - c.MktCapital_debt(code1) )/100000000,1) ) + str('억,   </h3>') + \
                     str('<h3>■매출액증가율 ') + str( round(c.MktCapital_salesriserate1(code1),1) ) + str('%,   □마지막분기매출액증가율 ') + str( round(c.MktCapital_salesriserate2(code1),1) ) + str('%,   </h3>') + \
                     str('<h3>■순이익증가율 ') + str( round(c.MktCapital_prftriserate1(code1),1) ) + str('%,   □마지막분기순이익증가율 ') + str( round(c.MktCapital_prftriserate2(code1),1) ) + str('%,   </h3>') + \
@@ -224,5 +225,5 @@ def analyze() -> str:
 
 
 if __name__ == "__main__":
-    app.run( debug=True, host="0.0.0.0", port="3333" )
+    app.run( debug=False, host="0.0.0.0", port="5000" )
 
